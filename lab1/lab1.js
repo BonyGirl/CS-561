@@ -1,6 +1,3 @@
-// For your first function, you will calculate the sum of the squares 
-// of 3 numbers and return that result. That means sumOfSquares(5, 3, 10)
-//  would return 134.
 
 function sumOfSquares(num1, num2, num3) {
     if (num1 === undefined || typeof num1 !== "number") {
@@ -15,6 +12,8 @@ function sumOfSquares(num1, num2, num3) {
 
     return num1*num1+num2*num2+num3*num3;
 }
+
+
 // sayHelloTo(); // throws 
 // sayHelloTo("Phil"); // logs: Hello, Phil! 
 // sayHelloTo("Phil", "Barresi"); //logs: Hello, Phil Barresi. I hope you are having a good day!
@@ -35,17 +34,18 @@ function sayHelloTo(firstName, lastName, title){
 }
 
 function cupsOfCoffee(howManyCups){
-    if (howManyCups === undefined|| typeof num1 !== "number") {
+    "use strict";
+    if (howManyCups === undefined || typeof howManyCups !== "number") {
         throw "howManyCups is not a number";
     }
-    for(var i = howManyCups;i>0;){
+    for(let i = howManyCups;i>0;){
         if(i==1){
             console.log("1 cup of coffee on the desk! 1 cup of coffee!");
             console.log("Pick it up, drink the cup, no more coffee left on the desk!");
             i--;
         }
         else {
-            console.log(i," cups of coffee on the desk! ", i," cups of coffee! ");
+            console.log(i,'cups of coffee on the desk! ', i,' cups of coffee! ');
             i--;
             console.log("Pick one up, drink the cup,",i," cups of coffee on the desk!");
         }
@@ -53,12 +53,9 @@ function cupsOfCoffee(howManyCups){
     }
 }
 
-/**
- * @param  {Sring} full string
- * @param  {String} substring
- * @return {Number} match times
- */
+
 function occurrencesOfSubstring(fullString, substring) {
+    "use strict";
     if (!fullString || typeof fullString !== 'string') {
         console.error( 'ERROR: fullString is not a string' );
         fullString = fullString.toString();
@@ -77,11 +74,9 @@ function occurrencesOfSubstring(fullString, substring) {
 }
 
 
-/**
- * @param  {String} input paragraph
- * @return {String} random paragraph
- */
+
 function randomizeSentences(paragraph) {
+    "use strict";
     if (!paragraph || typeof paragraph !== 'string') {
         console.error( 'ERROR: fullString is not a string' );
         paragraph = paragraph.toString();
@@ -103,15 +98,22 @@ function randomizeSentences(paragraph) {
 }
 
 
-// const sumOfSquaresAnswer = sumOfSquares(5,3,10);
-// console.log( "the sum of 5, 3, 10 squares is: " ,sumOfSquaresAnswer);
+const sumOfSquaresAnswer = sumOfSquares(5,3,10);
+console.log( "the sum of 5, 3, 10 squares is: " ,sumOfSquaresAnswer);
 
 // sayHelloTo(); // throws 
-// sayHelloTo("Phil"); // logs: Hello, Phil! 
-// sayHelloTo("Phil", "Barresi"); //logs: Hello, Phil Barresi. I hope you are having a good day!
-// sayHelloTo("Phil", "Barresi", "Mr."); // logs: Hello, Mr. Phil Barresi! Have a good evening!
+sayHelloTo("Phil"); // logs: Hello, Phil! 
+sayHelloTo("Phil", "Barresi"); //logs: Hello, Phil Barresi. I hope you are having a good day!
+sayHelloTo("Phil", "Barresi", "Mr."); // logs: Hello, Mr. Phil Barresi! Have a good evening!
 
-// cupsOfCoffee(10);
+cupsOfCoffee(10);
 
-var a = "world";
-console.log("hello %s !!", a);
+console.log(occurrencesOfSubstring("hello world", "o"));
+console.log(occurrencesOfSubstring("Helllllllo, class!", "ll"));
+
+var paragraph = "Hello, world! I am a paragraph. You can tell that I am a paragraph because there are multiple sentences that are split up by punctuation marks. Grammar can be funny, so I will only put in paragraphs with periods, exclamation marks, and question marks -- no quotations.";
+
+console.log(randomizeSentences(paragraph));
+
+// var a = "world";
+// console.log("hello %s !!", a);
