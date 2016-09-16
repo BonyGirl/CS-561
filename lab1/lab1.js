@@ -52,11 +52,12 @@ function cupsOfCoffee(howManyCups){
     }
 }
 function occurrencesOfSubstring(fullString, substring){
-    
+
 }
 // function randomizeSentences(paragraph){
 
 // }
+
 
 // const sumOfSquaresAnswer = sumOfSquares(5,3,10);
 // console.log( "the sum of 5, 3, 10 squares is: " ,sumOfSquaresAnswer);
