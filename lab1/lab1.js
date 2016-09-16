@@ -33,6 +33,7 @@ function sayHelloTo(firstName, lastName, title){
         console.log("Hello, ", title ,firstName, lastName,"! Have a good evening!");
     }
 }
+
 function cupsOfCoffee(howManyCups){
     if (howManyCups === undefined|| typeof num1 !== "number") {
         throw "howManyCups is not a number";
@@ -51,12 +52,55 @@ function cupsOfCoffee(howManyCups){
         console.log(" ");
     }
 }
-function occurrencesOfSubstring(fullString, substring){
 
+/**
+ * @param  {Sring} full string
+ * @param  {String} substring
+ * @return {Number} match times
+ */
+function occurrencesOfSubstring(fullString, substring) {
+    if (!fullString || typeof fullString !== 'string') {
+        console.error( 'ERROR: fullString is not a string' );
+        fullString = fullString.toString();
+    }
+    if (!substring || typeof substring !== 'string') {
+        console.error( 'ERROR: substring is not a string' );
+        substring = substring.toString();
+    }
+    var times = 0;
+    for(let i=0, subLen = substring.length, len=fullString.length-subLen; i<len; i++) {
+        if (fullString.substring(i, i+subLen) === substring) {
+            times++;
+        }
+    }
+    return times;
 }
-// function randomizeSentences(paragraph){
 
-// }
+
+/**
+ * @param  {String} input paragraph
+ * @return {String} random paragraph
+ */
+function randomizeSentences(paragraph) {
+    if (!paragraph || typeof paragraph !== 'string') {
+        console.error( 'ERROR: fullString is not a string' );
+        paragraph = paragraph.toString();
+    }
+
+    var regexp = /[^\.!\?]+[\.!\?]+/g; // add punctuation here
+    paragraph = paragraph.match(regexp);
+
+    for(let i=0, len=paragraph.length, index=0, temp=0; i<len; i++) {
+        index = parseInt(Math.random()*(len-1))+i;
+        if(index !== i){
+            temp = paragraph[i];
+            paragraph[i] = paragraph[index];
+            paragraph[index] = temp;
+        }
+    }
+
+    return paragraph.join('');
+}
 
 
 // const sumOfSquaresAnswer = sumOfSquares(5,3,10);
@@ -70,4 +114,4 @@ function occurrencesOfSubstring(fullString, substring){
 // cupsOfCoffee(10);
 
 var a = "world";
-console.log("hello ${a} !!");
+console.log("hello %s !!", a);
