@@ -3,33 +3,42 @@ const fs = require('fs');
 
 
 exports.getFileAsString = function(path) {
-    fs.readFile(path,"utf-8",(error,data) => {
-        return new Promise((fulfill, reject) => {
-                if (error) reject("Something was error");
-                var asObject = data;
-                console.log(asObject);
-            });
-        // console.log("hahaha");
-    });
+    if (!path || typeof path !== 'string') {
+        console.log('no path is provided')
+    }
+    else {
+        fs.readFile(path,"utf-8",(error,data) => {
+            return new Promise((fulfill, reject) => {
+                    if (error) reject("Something was error");
+                    var asObject = data;
+                    console.log(asObject);
+                });
+            // console.log("hahaha");
+        });
+    }
 }
 
 exports.getFileAsJSON = function(path) {
-    fs.readFile(path,"utf-8",(error,data) => {
-        return new Promise((fulfill, reject) => {
-                if (error) reject("Something was error");
-                var asObject = JSON.parse(data);
-                console.log(asObject);
-            });
-    });
+    if (!path || typeof path !== 'string') {
+        console.log('no path is provided')
+    }
+    else {
+        fs.readFile(path,"utf-8",(error,data) => {
+            return new Promise((fulfill, reject) => {
+                    if (error) reject("Something was error");
+                    var asObject = JSON.parse(data);
+                    console.log(asObject);
+                });
+        });
+    }
 }
 
 exports.saveStringToFile = function(path,text) {
     return new Promise((fulfill, reject) => {
-                if(!path||!obj) reject("no path or text is provided");
-                
-                s.writeFile(path, text,  function(err) {
+                if(!path||!text) reject("no path or text is provided");
+                fs.writeFile(path, text,  function(err) {
                     if (err) reject(`Something was error, can't save the file. Error: ${err}`);
-                    fulfill(console.log(`save string to ${path} successfully!`));
+                    console.log(`save string to ${path} successfully!`);
     });
 });
 }

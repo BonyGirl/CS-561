@@ -1,9 +1,15 @@
 
 const fs = require('fs');
 function createMetrics(text) {
-    console.log(`totalLetters: ${clearString(text).length},`);
-    findWords(text);
+    if (!text || typeof text !== 'string') {
+        console.log('no text is provided')
+    }
+    else {
+        console.log(totalSentences(text));
 
+        console.log(`totalLetters: ${clearString(text).length},`);
+        findWords(text);
+    }
 }
 
 function clearString(s){ 
@@ -48,6 +54,7 @@ function findWords(s){
     console.log(`uniqueWords: ${uniqueWords},`);
     console.log(`longWords: ${longWords},`);
     console.log(`averageWordLength: ${totalLength/uniqueWords},`);
+    console.log(`textComplexity: ${uniqueWords/totalSentences(s) + (longWords)*100/uniqueWords}`);
     console.log(`wordOccurrences:`);
     console.log(numOfWords);
     console.log(`}`);
@@ -67,6 +74,12 @@ exports.readFile = function(path) {
             });
         // console.log("hahaha");
     });
+}
+
+function totalSentences(s){
+    var regexp = /[^\.!\?]+[\.!\?]+/g; // add punctuation here
+    sentences = s.match(regexp);
+    return sentences.length;
 }
 
 
