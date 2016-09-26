@@ -3,7 +3,12 @@ var fileData = require('./fileData')
 
 // fileData.getFileAsString('chapter1.txt');
 
-fileData.saveStringToFile('saveString.text','asdfsadfjsldfjalsdfjlskd!');
+// fileData.getFileAsJSON('package.json');
+
+// fileData.saveStringToFile('saveString.text','asdfsadfjsldfjalsdfjlskd!');
+
+// var saveStringToFile = fileData.saveStringToFile('saveString.text','asdfsadfjsldfjalsdfjlskd!');
 
 
-// fileData.saveJSONToFile('saveJSON.json','{data:1,data:2,data:3}');
+let data = '{data:1,data:2,data:3}';
+fileData.saveJSONToFile(data);

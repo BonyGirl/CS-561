@@ -4,36 +4,44 @@ const fs = require('fs');
 
 exports.getFileAsString = function(path) {
     fs.readFile(path,"utf-8",(error,data) => {
-        if(error) throw error;
-        var asObject = data;
-        console.log(asObject);
+        return new Promise((fulfill, reject) => {
+                if (error) reject("Something was error");
+                var asObject = data;
+                console.log(asObject);
+            });
         // console.log("hahaha");
     });
 }
 
-exports. getFileAsJSON = function(path) {
+exports.getFileAsJSON = function(path) {
     fs.readFile(path,"utf-8",(error,data) => {
-        if(error) throw error;
-        var asObject = JSON.parse(data);
-        console.log(asObject);
-        // console.log("hahaha");
+        return new Promise((fulfill, reject) => {
+                if (error) reject("Something was error");
+                var asObject = JSON.parse(data);
+                console.log(asObject);
+            });
     });
 }
 
 exports.saveStringToFile = function(path,text) {
-    fs.writeFile(path, text,  function(err) {
-   if (err) {
-       return console.error(err);
-   }
+    return new Promise((fulfill, reject) => {
+                if(!path||!obj) reject("no path or text is provided");
+                
+                s.writeFile(path, text,  function(err) {
+                    if (err) reject(`Something was error, can't save the file. Error: ${err}`);
+                    console.log(`save string to ${path} successfully!`);
+    });
 });
 }
 
 exports.saveJSONToFile = function(path,obj) {
-    fs.writeFile(path,JSON.stringify(obj,null,4),  function(err) {
-   if (err) {
-       return console.error(err);
-    }
+    return new Promise((fulfill, reject) => {
+                if(!path||!obj) reject("no path or text is provided");
+                fs.writeFile(path,JSON.stringify(obj,null,4),  function(err) {
+                    if (err) reject(`Something was error, can't save the file. Error: ${err}`);
+                    console.log(`save JSON to ${path} successfully!`);
     });
+            });
 
 }
 
