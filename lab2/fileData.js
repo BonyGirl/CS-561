@@ -29,7 +29,7 @@ exports.saveStringToFile = function(path,text) {
                 
                 s.writeFile(path, text,  function(err) {
                     if (err) reject(`Something was error, can't save the file. Error: ${err}`);
-                    console.log(`save string to ${path} successfully!`);
+                    fulfill(console.log(`save string to ${path} successfully!`));
     });
 });
 }
@@ -39,7 +39,7 @@ exports.saveJSONToFile = function(path,obj) {
                 if(!path||!obj) reject("no path or text is provided");
                 fs.writeFile(path,JSON.stringify(obj,null,4),  function(err) {
                     if (err) reject(`Something was error, can't save the file. Error: ${err}`);
-                    console.log(`save JSON to ${path} successfully!`);
+                    fulfill(console.log(`save JSON to ${path} successfully!`));
     });
             });
 
