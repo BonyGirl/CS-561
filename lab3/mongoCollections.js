@@ -18,6 +18,6 @@ let getCollectionFn = (collection) => {
 
 /* Now, you can list your collections here: */
 module.exports = {
-    todoItems: getCollectionFn("todoItems")
+    todo: getCollectionFn("todoItems")
 };
 
