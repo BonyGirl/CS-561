@@ -1,4 +1,5 @@
 const mongoCollections = require("./mongoCollections");
+const uuid = require('node-uuid');
 const todo = mongoCollections.todo;
 
 let exportedMethods = {
@@ -25,11 +26,16 @@ let exportedMethods = {
             return Promise.reject("You must provide a description for your task");
         
         return todo().then((todoCollection) => {
+            var buffer = new Array(32);
+            uuid.v4(null, buffer, 16);
             let newTodo = {
+                _id : uuid.unparse(buffer,16),
                 title: title,
-                description: description
+                description: description,
+                completed: false,
+                completedAt: null
             };
-            
+
             return todoCollection
                 .insertOne(newTodo)
                 .then((newInsertInformation) => {
@@ -58,7 +64,22 @@ let exportedMethods = {
     completeTask(id) {
         if (!id) 
             return Promise.reject("You must provide an id to search for");
-        
+        return todo().then((todoCollection) => {
+            var date = new Date();
+            var current_hour = date.getHours();
+            let updatedTask = {
+
+                completed: true,
+                completedAt: date
+            };
+
+            return todoCollection.updateOne({
+                _id: id
+            },{$set: {completed: true,
+                completedAt: date}}).then(() => {
+                return this.getTask(id);
+            });
+        });
     }
 }
 
