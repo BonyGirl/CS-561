@@ -1,9 +1,11 @@
+"use strict"
+
 const MongoClient = require("mongodb").MongoClient;;
 
 const settings = {
     mongoConfig: {
         serverUrl: "mongodb://localhost:27017/",
-        database: "apiBasedBlog"
+        database: "lab4"
     }
 };
 

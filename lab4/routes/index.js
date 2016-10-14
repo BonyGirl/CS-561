@@ -1,12 +1,24 @@
-const postRoutes = require("./posts");
-const userRoutes = require("./users");
+"use strict"
+
+const eduRoutes = require("./education");
+const hobRoutes = require("./hobby");
+const _classRoutes = require("./_class");
 
 const constructorMethod = (app) => {
-    app.use("/posts", postRoutes);
-    app.use("/users", userRoutes);
+    app.use("/education", eduRoutes);
+    app.use("/hobbies", hobRoutes);
+    app.use("/classes", _classRoutes);
 
     app.use("*", (req, res) => {
-        res.sendStatus(404);
+        //console.log(typeof req.query.code);
+        console.log(req.query);
+        res.status(404).json({error: "Not found"});
+    
+        app.use(function(err, req, res, next) {
+            console.error(err.stack);
+            res.status(500).send('Something broke!');
+        });
+
     });
 };
 

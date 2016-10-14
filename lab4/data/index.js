@@ -1,7 +1,11 @@
-const postData = require("./posts");
-const userData = require("./users");
+"use strict"
+
+const _classData = require("./_class");
+const eduData = require("./education");
+const hobData = require("./hobby");
 
 module.exports = {
-    users: userData,
-    posts: postData
+    education:  eduData,
+    hobby:      hobData,
+    _class:     _classData
 };
