@@ -1,5 +1,3 @@
-"use strict"
-
 const dbConnection = require("./mongoConnection");
 
 let getCollectionFn = (collection) => {
@@ -18,5 +16,5 @@ let getCollectionFn = (collection) => {
 module.exports = {
     education: getCollectionFn("education"),
     hobby: getCollectionFn("hobby"),
-    _class: getCollectionFn("_class")
+    classData: getCollectionFn("classData")
 };

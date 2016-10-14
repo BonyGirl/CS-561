@@ -1,12 +1,10 @@
-"use strict"
-
 const express = require('express');
 const router = express.Router();
 const data = require("../data");
-const _classData = data._class;
+const classData = data.classData;
 
 router.get("/details", (req, res) => {
-    _classData.getClassByCourseCode(req.query.code).then((details) => {
+    classData.getClassByCourseCode(req.query.code).then((details) => {
         res.status(200).json({
                 name: details.courseName,
                 professor: details.professor,
@@ -18,7 +16,7 @@ router.get("/details", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-    _classData.getAllClasses().then((classList) => {
+    classData.getAllClasses().then((classList) => {
         //console.log(typeof classList);
         let partOfClassList = [];
         for(let i = 0; i < classList.length; i++) {

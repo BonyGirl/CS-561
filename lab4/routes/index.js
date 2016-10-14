@@ -1,8 +1,6 @@
-"use strict"
-
 const eduRoutes = require("./education");
 const hobRoutes = require("./hobby");
-const _classRoutes = require("./_class");
+const _classRoutes = require("./classData");
 
 const constructorMethod = (app) => {
     app.use("/education", eduRoutes);

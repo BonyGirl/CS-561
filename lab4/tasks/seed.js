@@ -2,7 +2,7 @@ const dbConnection = require("../config/mongoConnection");
 const data = require("../data/");
 const education = data.education;
 const hobby = data.hobby;
-const _class = data._class;
+const classData = data.classData;
 
 dbConnection().then(db => {
     return db.dropDatabase()
@@ -10,44 +10,38 @@ dbConnection().then(db => {
         return dbConnection;
     })
     .then(() => {
-        return education.addEdu("Shanghai University", "undergrad", "Bachelor of Science");
+        return education.addEdu("South China University Of Technology", "undergrad", "Bachelor of Software Engeneering");
     })
     .then(() => {
-        return education.addEdu("Beihai High School", "highschool");
+        return education.addEdu("YUSS", "highschool");
     })
     .then(() => {
-        return education.addEdu("Beihai Foreign Language School", "middleschool");
+        return education.addEdu("West Covina", "highschool");
     })
     .then(() => {
-        return education.addEdu("Beihai Foreign Language School", "middleschool");
+        return hobby.addHob("Writting blog", "http://caoyudong.com");
     })
     .then(() => {
-        return hobby.addHob("Swimming", "breaststroke");
+        return hobby.addHob("Baskteball", "Center");
     })
     .then(() => {
-        return hobby.addHob("Painting", "Oil Painting");
+        return classData.addClass("CS 546WS", "Web Programming", "Philip Barresi", "Perfect");
     })
     .then(() => {
-        return _class.addClass("CN001", "Chinese", "Zhihong Li", "Perfect");
+        return classData.addClass("CPE 695A", "Applied Machine Learning", "Rong Duan", "Perfect");
     })
     .then(() => {
-        return _class.addClass("CN002", "Math", "Zanwei Zhu", "Perfect");
-    })
-    .then(() => {
-        return _class.addClass("CN003", "English", "Honhpei Wei", "Perfect");
+        return classData.addClass("CS 548A", "Engr'g Enterprise Software Sys.", "Dominic Duggan", "Perfect");
     })    
     .then(() => {
-        return _class.addClass("CN004", "Biology", "Yongyuan Lee", "Great");
+        return classData.addClass("CS 562A", "Database Management Systems II", "kim", "Great");
     })
     .then(() => {
-        return _class.addClass("CN005", "Physics", "Dong Pang", "Amazing");
+        return classData.addClass("CS 561A", "Database Management Systems I", "kim", "Amazing");
     })
     .then(() => {
-        return _class.addClass("CN006", "Chemistry", "Zhenshu Zhang", "Terrific");
+        return classData.addClass("CS 600", "Algorithm", "Zhenshu Zhang", "Terrific");
     })
-
-
-
     .then(() => {
         console.log("Done seeding class database");
         db.close();
@@ -55,61 +49,3 @@ dbConnection().then(db => {
 }, (error) => {
     console.error(error);
 });
-
-          // })
-            // .then(() => {
-            //     return _class.addClass("CN003", "English", "Honhpei Wei", "Perfect");
-            // })
-            // .then(() => {
-            //     return _class.addClass("CN004", "Biology", "Yongyuan Lee", "Great");
-            // })
-            // .then(() => {
-            //     return _class.addClass("CN005", "Physics", "Dong Pang", "Amazing");
-            // })
-            // .then(() => {
-            //     return _class.addClass("CN006", "Chemistry", "Zhenshu Zhang", "Terrific");
-            // })
-            // .then(() => {
-            //     return education.addEdu("Shanghai University", "undergrad", "Bachelor of Science");
-            // })
-            
-            //;
-    
-    // .then((aojia) => {
-    //     const id = aojia._id;
-
-    //     return posts
-    //         .addPost("Hello, class!", "Today we are creating a blog!", id)
-    //         .then(() => {
-    //             return posts.addPost("Using the seed", "We use the seed to have some initial data so we can just focus on servers this week", id);
-    //         })
-    //         .then(() => {
-    //             return posts.addPost("Using routes", "The purpose of today is to simply look at some GET routes", id);
-    //         });
-    // })
-
-    // .then((db) => {
-    //     return _class.addClass("CN001", "Chinese", "Zhihong Li", "Awesome").then(() => {
-    //         return db;
-    //     });
-    // }).then((db) => {
-    //     return _class.addClass("CN002", "Math", "Zanwei Zhu", "Great").then(() => {
-    //         return db;
-    //     });
-    // }).then((db) => {
-    //     return _class.addClass("CN003", "English", "Honhpei Wei", "Perfect").then(() => {
-    //         return db;
-    //     });
-    // }).then((db) => {
-    //     return _class.addClass("CN004", "Biology", "Yongyuan Lee", "Great").then(() => {
-    //         return db;
-    //     });
-    // }).then((db) => {
-    //     return _class.addClass("CN005", "Physics", "Dong Pang", "Amazing").then(() => {
-    //         return db;
-    //     });
-    // }).then((db) => {
-    //     return _class.addClass("CN006", "Chemistry", "Zhenshu Zhang", "Terrific").then(() => {
-    //         return db;
-    //     });
-    //})

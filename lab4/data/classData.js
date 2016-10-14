@@ -1,12 +1,10 @@
-"use strict"
-
 const mongoCollections = require("../config/mongoCollections");
-const _class = mongoCollections._class;
+const classData = mongoCollections.classData;
 const uuid = require('node-uuid');
 
 let exportedMethods = {
     getAllClasses() {
-        return _class().then((classCollection) => {
+        return classData().then((classCollection) => {
             return classCollection.find({}).toArray();
         });
     },
@@ -15,7 +13,7 @@ let exportedMethods = {
         if(!courseCode || typeof courseCode != 'string') 
             return Promise.reject("Inappropriate courseCode input in seed.js!");
 
-        return _class().then((classCollection) => {
+        return classData().then((classCollection) => {
             return classCollection.findOne({ courseCode: courseCode }).then((courseCode) => {
                 if (!courseCode) throw "Course code not found";
                 return courseCode;
@@ -33,7 +31,7 @@ let exportedMethods = {
         if(!description || typeof description != 'string') 
             return Promise.reject("Inappropriate description input in seed.js!");
 
-        return _class().then((classCollection) => {
+        return classData().then((classCollection) => {
             let newClass = {
                 courseName: name,
                 professor: professor,
