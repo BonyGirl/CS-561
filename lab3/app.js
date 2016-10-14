@@ -56,7 +56,7 @@ createdTask1.then((newTask) => {
 
     console.log();
     console.log();
-    console.log('===============get all tasks==============')
+    console.log('===============complete task==============')
     
     return todoItems.completeTask(task._id);    
 }).then((task) => {
