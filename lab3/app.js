@@ -9,62 +9,89 @@ let createdTask1 = todoItems.createTask("Ponder Dinosaurs",
 createdTask1.then((newTask) => {
     console.log(newTask);
     firstTaskId = newTask._id;
+    // return connection();
+    return todoItems;
+}).then((todoItems)=>{
+    let createdTask2 = todoItems.createTask("Play Pokemon with Twitch TV", 
+                                        "Should we revive Helix?");
+    return createdTask2;
+}).then((newTask)=>{
+    console.log(newTask);
+    secondTaskId = newTask._id;
+
+}).then(() => {
+    console.log();
+    console.log();
+    console.log('===============get all tasks==============')
+
+    let getAll = todoItems.getAllTask();
+    return getAll;
+}).then((tasks) => {
+    console.log(tasks);
+    return todoItems;
+}).then((todoItems)=>{
+
+    console.log();
+    console.log();
+    console.log('===============remove first task==============')
+
+    let removeTask = todoItems.removeTask(firstTaskId);
+    let tryToGetTask = removeTask.then(() => {
+        return todoItems.getTask(firstTaskId);
+    });
+// });  
+}).then(()=>{
+    console.log();
+    console.log();
+    console.log('===============get all tasks==============')
+
+    let getAll = todoItems.getAllTask();
+    return getAll;
+}).then((tasks) => {
+    console.log(tasks);
+    return todoItems;
+}).then((todoItems)=>{
+    return todoItems.getTask(secondTaskId);
+}).then((task) => {    
+
+    console.log();
+    console.log();
+    console.log('===============get all tasks==============')
+    
+    return todoItems.completeTask(task._id);    
+}).then((task) => {
+    console.log(task);
+    return this;
+}).then(()=>{
+    return todoItems.getTask(secondTaskId);
+}).then((task) => {
+    console.log(task);
     return connection();
 }).then((db)=>{
-    db.close();
-});
-
-let createdTask2 = todoItems.createTask("Play Pokemon with Twitch TV", 
-                                        "Should we revive Helix?");
-
-createdTask2.then((newTask) => {
-    // console.log(newTask);
-    secondTaskId = newTask._id;
-});
-
-var getAll = todoItems.getAllTask();
-
-getAll.then((task) => {
-    console.log(task);
-})
-
-
-let removeTask = todoItems.removeTask(firstTaskId);
-let tryToGetTask = removeTask.then(() => {
-    return todoItems.getTask(firstTaskId);
-});
-
-// tryToGetTask.catch((error) => {
-//     // Should error out
-//     console.error(error);
-// })
-
-getAll = todoItems.getAllTask();
-
-getAll.then((task) => {
-    console.log(task);
-})
-
-
-var taskPromise = todoItems.getTask(secondTaskId);
-
-let finishedTask = taskPromise.then((task) => {    
-    return todoItems.completeTask(task._id);    
-});
-
-finishedTask.then((task) => {
-    console.log(task);
-});
-
-taskPromise = todoItems.getTask(secondTaskId);
-
-taskPromise.then((task) => {
-    console.log(task);
-})
-
-removeTask = todoItems.removeTask(secondTaskId).then((db)=>{
     return db.close();
 });
+
+
+
+// var taskPromise = todoItems.getTask(secondTaskId);
+
+// let finishedTask = taskPromise.then((task) => {    
+//     return todoItems.completeTask(task._id);    
+// });
+
+// finishedTask.then((task) => {
+//     console.log(task);
+// });
+
+// taskPromise = todoItems.getTask(secondTaskId);
+
+// taskPromise.then((task) => {
+//     console.log(task);
+// })
+
+// removeTask = todoItems.removeTask(secondTaskId).then((db)=>{
+//     return db.close();
+// });
 
 
 

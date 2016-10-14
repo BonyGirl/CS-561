@@ -5,9 +5,9 @@ const todo = mongoCollections.todo;
 let exportedMethods = {
     // This is a fun new syntax that was brought forth in ES6, where we can define
     // methods on an object with this shorthand!
-    getAllTask(callback) {
+    getAllTask() {
         return todo().then((todoCollection) => {
-            return todoCollection.find().next(callback);
+            return todoCollection.find().toArray();
         });
     },
     getTask(id) {
