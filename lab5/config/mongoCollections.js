@@ -19,6 +19,6 @@ let getCollectionFn = (collection) => {
 /* Now, you can list your collections here: */
 module.exports = {
     recipe: getCollectionFn("recipe"),
-    Comments: getCollectionFn("Comments")
+    // Comments: getCollectionFn("Comments")
 };
 

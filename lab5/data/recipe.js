@@ -5,9 +5,7 @@ const uuid = require('node-uuid');
 
 
 let exportedMethods = {
-    getRecipeByIngredients() {
-
-    },
+    
     getAllrecipe() {
         return recipe().then((recipeCollection) => {
             return recipeCollection.find({}).toArray();
@@ -16,8 +14,8 @@ let exportedMethods = {
     getRecipeById(id) {
         return recipe().then((recipeCollection)=>{
             return recipeCollection.findOne({_id:id}).then((recipe)=>{
-                if(!post) throw "Post not found";
-                return post;
+                if(!recipe) throw "Post not found";
+                return recipe;
             });
         });
     },
@@ -54,17 +52,13 @@ let exportedMethods = {
                 updateRecipeData.title = updatedRecipe.title;
             }
 
-            // if (updatedRecipe.ingredients) {
-            //     updateRecipeData.ingredients = updatedRecipe.ingredients;
-            // }
+            if (updatedRecipe.ingredients) {
+                updateRecipeData.ingredients = updatedRecipe.ingredients;
+            }
 
-            // if (updatedRecipe.steps) {
-            //     updateRecipeData.steps = updatedRecipe.steps;
-            // }
-
-            // if (updatedRecipe.comments) {
-            //     updateRecipeData.comments = updatedRecipe.comments;
-            // }
+            if (updatedRecipe.steps) {
+                updateRecipeData.steps = updatedRecipe.steps;
+            }
 
             let updateCommand = {
                     $set: updateRecipeData
@@ -73,25 +67,6 @@ let exportedMethods = {
             return recipeCollection.updateOne({_id:id},updateCommand).then((result) => {
                 return this.getRecipeById(id);
             });
-        });
-    },
-    renameIngredients(oldIngredients, newIngredients) {
-        let findDocuments = {
-            tags: oldIngredients
-        };
-
-        let firstUpdate = {
-            $pull: oldIngredients
-        };
-
-        let secondUpdate = {
-            $addToSet: newIngredients
-        };
-
-        return recipeCollection.updateMany(findDocuments, firstUpdate).then((result) => {
-            return recipeCollection.updateMany(findDocuments, secondUpdate);
-        }).then((secondUpdate) => {
-            return this.getRecipeByIngredients(newIngredients);
         });
     }
 }
