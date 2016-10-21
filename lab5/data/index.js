@@ -1,5 +1,5 @@
-const postRoutes = require("./comments");
-const userRoutes = require("./recipe");
+const commentsRoutes = require("./comments");
+const recipeRoutes = require("./recipe");
 
 let constructorMethod = (app) => {
     app.use("/comments", postRoutes);
@@ -7,6 +7,6 @@ let constructorMethod = (app) => {
 };
 
 module.exports = {
-    users: require("./comments"),
-    posts: require("./recipe")
+    comments: require("./comments"),
+    recipe: require("./recipe")
 };
