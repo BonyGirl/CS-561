@@ -13,11 +13,11 @@ router.get("/recipe/:recipeId", (req, res) => {
 });
 
 
-router.get(":commentId", (req, res) => {
+router.get("/:commentId", (req, res) => {
     commentsData.getCommentById(req.params.commentId).then((post) => {
         res.json(post);
     }).catch(() => {
-        res.status(404).json({ error: "Post not found" });
+        res.status(404).json({ error: "comment not found" });
     });
 });
 
@@ -31,21 +31,20 @@ router.post("/:recipeId", (req, res) => {
         });
 });
 
-
 router.put("/:recipeId/:commentId", (req, res) => {
     let updatedData = req.body;
 
-    let getPost = postData.getPostById(req.params.id);
+    let getComment = commentsData.getCommentById(req.params.commentId);
 
-    getPost.then(() => {
-        return postData.updatePost(req.params.id, updatedData)
+    getComment.then(() => {
+        return commentsData.updateComment(req.params.commentId, updatedData)
             .then((updatedPost) => {
                 res.json(updatedPost);
             }).catch((e) => {
                 res.status(500).json({ error: e });
             });
     }).catch(() => {
-        res.status(404).json({ error: "Post not found" });
+        res.status(404).json({ error: "comment not found" });
     });
 
 });
