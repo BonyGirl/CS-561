@@ -5,8 +5,7 @@
             "name": "Launch",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/lab6/app.js",
-            // "program": "${workspaceRoot}/lab4/tasks/seed.js",
+            "program": "${workspaceRoot}/app.js",
             "stopOnEntry": false,
             "args": [],
             "cwd": "${workspaceRoot}",
@@ -20,7 +19,7 @@
             },
             "console": "internalConsole",
             "sourceMaps": false,
-            "outDir": null
+            "outFiles": []
         },
         {
             "name": "Attach",
@@ -30,7 +29,7 @@
             "address": "localhost",
             "restart": false,
             "sourceMaps": false,
-            "outDir": null,
+            "outFiles": [],
             "localRoot": "${workspaceRoot}",
             "remoteRoot": null
         },
@@ -41,7 +40,7 @@
             "processId": "${command.PickProcess}",
             "port": 5858,
             "sourceMaps": false,
-            "outDir": null
+            "outFiles": []
         }
     ]
 }
