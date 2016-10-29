@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require("../data");
 const event = data.events;
 const location = data.locations
+const path = require('path');
 
 
 // Single Event Page
@@ -14,7 +15,12 @@ router.get("/:id", (req, res) => {
     // You will also list the location of the event, said location's name, and a link to the location page
 
     // If a event is not found, display the 404 error page
-    res.render("misc/debug", { debug: true, modelData: { something: "SomeValue" } });
+    return event.getEvent(req.params.id).then((event)=>{
+        res.render("misc/debug", { debug: true, modelData: event });
+    }).catch(() => {
+        let route = path.resolve(`static/404.html`);
+        res.sendFile(route);
+    });
 });
 
 // Event Index Page
