@@ -16,7 +16,7 @@ router.get("/:id", (req, res) => {
 
     // If a event is not found, display the 404 error page
     return event.getEvent(req.params.id).then((event)=>{
-        res.render("misc/debug", { debug: true, modelData: event });
+        res.render("layouts/singleEvent",{event:event});
     }).catch(() => {
         let route = path.resolve(`static/404.html`);
         res.sendFile(route);
@@ -27,8 +27,13 @@ router.get("/:id", (req, res) => {
 router.get("/", (req, res) => {
     // Display a list of all events; it can be in an unordered list, or a table
     // Each of these events need to link to the single event page
-
-    res.render("misc/debug", { debug: true, modelData: { something: "SomeValue" } });
+    return event.getAllEvents().then((events)=>{
+        // res.render("misc/debug", { debug: true, modelData: event });
+        res.render("layouts/events",{events:events});
+    }).catch(() => {
+        let route = path.resolve(`static/404.html`);
+        res.sendFile(route);
+    });
 });
 
 module.exports = router;
