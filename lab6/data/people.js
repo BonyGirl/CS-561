@@ -30,7 +30,7 @@ let exportedMethods = {
     getPerson: (id) => {
         if (id === undefined) return Promise.reject("No id provided");
 
-        let person = personList.filter(x => x.id === id).shift();
+        let person = personList.filter(x => x.id == id).shift();
         if (!person) return Promise.reject("No person found")
 
         return Promise.resolve(person);

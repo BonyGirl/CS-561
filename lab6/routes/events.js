@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require("../data");
 const event = data.events;
 const location = data.locations
+const people = data.people
 const path = require('path');
 
 
@@ -16,6 +17,17 @@ router.get("/:id", (req, res) => {
 
     // If a event is not found, display the 404 error page
     return event.getEvent(req.params.id).then((event)=>{
+        let attendeeIds = event["attendees"];
+        let attendee = [];
+        for (peopleId in attendeeIds) {
+           people.getPerson(peopleId).then((people) => {
+                attendee.push(people);
+            });
+        }
+        event["attendees"]= attendee;
+    }).then(()=>{
+        return event;
+    }).then((event) =>{
         res.render("layouts/singleEvent",{event:event});
     }).catch(() => {
         let route = path.resolve(`static/404.html`);
