@@ -1,14 +1,16 @@
 <article class="person">
   <h1>{{ person.name }}</h1>
   <!--<address>Start Time :<a href="" rel="author">{{event.startTime}}</a></address>-->
-  <p>Events </p>
   {{#if events.length}}
-    <h3>Attendees</h3>
+     <h3>Events </h3>
     <ul>
-      {{#each event.attendees}}
-        <li><a href="/posts/tag/{{this.name}}">{{this.name}}</a></li>
+      {{#each events}}
+        <li>
+          <a href="/events/{{this.id}}">{{this.title}}</a>
+          <p>time : {{this.startTime}}</p>
+          <p>description : {{this.description}}</p>
+          </li>
       {{/each}}
     </ul>
   {{/if}}
-    <p>location : {{event.location}}</p>
 </article>

@@ -13,24 +13,27 @@ router.get("/:id", (req, res) => {
     // Each of these events need to link to the event page, and show the event name
     // If a person is not found, display the 404 error page
     return people.getPerson(req.params.id).then((person) => {
-        return events.getEventsForAttendee(req.params.id).then((events)=> {
-            // res.render("layouts/person",{people:person,events:events});
-            console.log(events);
-            res.render("misc/debug",{people:person,events:events});
+        return events.getEventsForAttendee(req.params.id).then((eventsOfAttendee)=> {
+            
+            res.render("layouts/person",{person:person,events:eventsOfAttendee});
+            // res.render("misc/debug",{people:person,events:eventsOfAttendee});
             // return events;
         }).catch(() => {
         let route = path.resolve(`static/404.html`);
         res.sendFile(route);
         });
-    });
+    }).catch(() => {
+        let route = path.resolve(`static/404.html`);
+        res.sendFile(route);
+    })
 });
 
 // People Index Page
 router.get("/", (req, res) => {
     // Display a list of all people; it can be in an unordered list, or a table
     // Each of these people need to link to the single person page
-    return people.getPerson(req.params.id).then((person) => {
-        res.render("layouts/people",{people:person});
+    return people.getAllPeople().then((peopleList) => {
+        res.render("layouts/people",{people:peopleList});
     }).catch(() => {
         let route = path.resolve(`static/404.html`);
         res.sendFile(route);

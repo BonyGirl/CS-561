@@ -1,14 +1,14 @@
 <article class="event">
   <h1>{{ event.title }}</h1>
-  <address>Start Time :<a href="" rel="author">{{event.startTime}}</a></address>
+  <time>Start Time :{{event.startTime}}</time>
   <p>{{ event.description }}</p>
-  {{#if event.attendees.length}}
+  {{#if attendees.length}}
     <h3>Attendees</h3>
     <ul>
-      {{#each event.attendees}}
-        <li><a href="/posts/tag/{{this}}">{{this}}</a></li>
+      {{#each attendees}}
+        <li><a href="/posts/tag/{{this.name}}">{{this.name}}</a></li>
       {{/each}}
     </ul>
   {{/if}}
-    <p>location : {{event.location}}</p>
+  <address>{{location.name}} </br>{{location.location}}</address>
 </article>

@@ -17,18 +17,11 @@ router.get("/:id", (req, res) => {
 
     // If a event is not found, display the 404 error page
     return event.getEvent(req.params.id).then((event)=>{
-    //     let attendeeIds = event["attendees"];
-    //     let attendee = [];
-    //     for (peopleId in attendeeIds) {
-    //        people.getPerson(peopleId).then((people) => {
-    //             attendee.push(people);
-    //         });
-    //     }
-    //     event["attendees"]= attendee;
-    // }).then(()=>{
-    //     return event;
-    // }).then((event) =>{
-        res.render("layouts/singleEvent",{event:event});
+        return people.getPersonList(event.attendees).then((attendees) => {
+            return location.getLocation(event.location).then((lc) => {
+                res.render("layouts/singleEvent",{event:event,attendees:attendees,location:lc});
+            });
+        });
     }).catch(() => {
         let route = path.resolve(`static/404.html`);
         res.sendFile(route);

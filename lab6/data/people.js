@@ -34,7 +34,19 @@ let exportedMethods = {
         if (!person) return Promise.reject("No person found")
 
         return Promise.resolve(person);
+    },
+    getPersonList:(idList)=>{
+        if(idList === undefined) return Promise.reject("No id list provided");
+
+        let attendeesList = [];
+        for(let i=0;i<idList.length;i++) {
+            attendeesList.push(personList.filter(x=>x.id == idList[i]).shift());
+        }
+        if(!attendeesList) Promise.reject("No person found");
+
+         return Promise.resolve(attendeesList);
     }
+    
 }
 
 module.exports = exportedMethods;
