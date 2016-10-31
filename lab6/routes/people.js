@@ -25,7 +25,7 @@ router.get("/:id", (req, res) => {
     }).catch(() => {
         let route = path.resolve(`static/404.html`);
         res.sendFile(route);
-    })
+    });
 });
 
 // People Index Page

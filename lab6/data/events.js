@@ -63,6 +63,12 @@ let exportedMethods = {
         if (attendeeId === undefined) return Promise.reject("No attendee id provided");
 
         return Promise.resolve(eventList.filter(x => x.attendees.indexOf(Number(attendeeId)) >= 0));
+    },
+    getEventsByLocation: (locationId) => {
+        if (locationId === undefined) return Promise.reject("No location id provided");
+
+        return Promise.resolve(eventList.filter(x => x.location == locationId).shift());
+
     }
 }
 
