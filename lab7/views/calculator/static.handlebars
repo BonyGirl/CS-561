@@ -2,6 +2,14 @@
   <div class="col-sm-12">
     <form id="static-form" method="post">
       <div class="form-group">
+        <label for="number1">Text</label>
+        <input type="text" class="form-control" id="inputText" name="inputText" placeholder="Text" value="{{inputText}}">
+      </div>
+      <div class="form-group">
+        <label for="number2">String</label>
+        <input type="text" class="form-control" id="inputString" name="inputString" placeholder="String" value="{{inputString}}">
+      </div>
+      <div class="form-group">
         <label for="number1">First Number</label>
         <input type="number" class="form-control" id="number1" name="number1" placeholder="First Number" value="{{firstNumber}}">
       </div>
@@ -9,7 +17,7 @@
         <label for="number2">Second Number</label>
         <input type="number" class="form-control" id="number2" name="number2" placeholder="Second Number" value="{{secondNumber}}">
       </div>
-      <div class="form-group">
+      <!--<div class="form-group">
         <label for="operation">Operation</label>
         <select class="form-control" value="{{operation}}" id="operation" name="operation">
           <option value="add">Addition</option>
@@ -17,7 +25,7 @@
           <option value="multiply">Multiplication</option>
           <option value="divide">Division</option>
         </select>
-      </div>
+      </div>-->
       <div class="form-group hidden" id="error-container">
         <div class="alert alert-danger text-goes-here">
         </div>
