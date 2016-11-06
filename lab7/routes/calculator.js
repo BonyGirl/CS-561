@@ -12,35 +12,26 @@ router.get("/server", (req, res) => {
 });
 
 router.post("/server", (req, res) => {
-    let operation = (req.body.operation || "add").toLowerCase();
-    let firstNumber = parseInt(req.body.number1);
-    let secondNumber = parseInt(req.body.number2);
+    // let operation = (req.body.operation || "add").toLowerCase();
+    // let firstNumber = parseInt(req.body.number1);
+    // let secondNumber = parseInt(req.body.number2);
+
+    var inputText = req.body.inputText;
+    var inputString = req.body.inputString;
+    var firstNumber = parseInt(req.body.number1);
+    var secondNumber = parseInt(req.body.number2);
     let result;
 
     try {
 
-        switch (operation) {
-            case "add":
-                result = calculator.add(firstNumber, secondNumber);
-                break;
-            case "subtract":
-                result = calculator.subtract(firstNumber, secondNumber);
-                break;
-            case "multiply":
-                result = calculator.multiply(firstNumber, secondNumber);
-                break;
-            case "divide":
-                result = calculator.divide(firstNumber, secondNumber);
-                break;
-            default:
-                throw "Operation not supported"
-        }
+        result = calculator.textManipulator(inputText,inputString,firstNumber,secondNumber);
+        
     } catch (e) {
-        res.render("calculator/server", { firstNumber: firstNumber, secondNumber: secondNumber, operation: operation, error: e });
+        res.render("calculator/server", { firstNumber: firstNumber, secondNumber: secondNumber, inputText: inputText,inputString:inputString, error: e });
         return;
     }
 
-    res.render("calculator/server", { firstNumber: firstNumber, secondNumber: secondNumber, operation: operation, result: result });
+    res.render("calculator/server", { firstNumber: firstNumber, secondNumber: secondNumber, inputText: inputText,inputString:inputString, result: result });
 });
 
 module.exports = router;

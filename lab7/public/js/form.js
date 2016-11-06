@@ -22,15 +22,6 @@
 
         return insertStringIntoText(text,string,num1,num2);
     }
-
-    function operationStringToFunction(operation) {
-        if (!operation) throw "No operation provided";
-        var returnFunction = calculatorMethods[operation];
-
-        if (returnFunction === undefined) throw "No such operation";
-
-        return returnFunction;
-    }
     
     var staticForm = document.getElementById("static-form");
 
