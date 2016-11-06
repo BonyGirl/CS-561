@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const data = require("../data");
-const calculator = data.calculator;
+const manipulator = data.manipulator;
 
 router.get("/static", (req, res) => {
-    res.render("calculator/static", {});
+    res.render("manipulator/static", {});
 });
 
 router.get("/server", (req, res) => {
-    res.render("calculator/server", {});
+    res.render("manipulator/server", {});
 });
 
 router.post("/server", (req, res) => {
@@ -24,14 +24,15 @@ router.post("/server", (req, res) => {
 
     try {
 
-        result = calculator.textManipulator(inputText,inputString,firstNumber,secondNumber);
+        result = manipulator.textManipulator(inputText,inputString,firstNumber,secondNumber);
+        
         
     } catch (e) {
-        res.render("calculator/server", { firstNumber: firstNumber, secondNumber: secondNumber, inputText: inputText,inputString:inputString, error: e });
+        res.render("manipulator/server", { firstNumber: firstNumber, secondNumber: secondNumber, inputText: inputText,inputString:inputString, error: e });
         return;
     }
 
-    res.render("calculator/server", { firstNumber: firstNumber, secondNumber: secondNumber, inputText: inputText,inputString:inputString, result: result });
+    res.render("manipulator/server", { firstNumber: firstNumber, secondNumber: secondNumber, inputText: inputText,inputString:inputString, result: result });
 });
 
 module.exports = router;

@@ -1,9 +1,7 @@
 function insertStringIntoText(text,string,num1,num2 ){ 
         let ans = text;
         for(let i =1;i<=num1;i++){
-            console.log(i);
             ans = [ans.slice(0,((i-1)*string.length+i*num2)),string,ans.slice(((i-1)*string.length+i*num2))].join('');
-            console.log(ans);
         }
         return ans;
 

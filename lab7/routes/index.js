@@ -1,10 +1,10 @@
-const calculatorRoutes = require("./calculator");
+const manipulatorRoutes = require("./manipulator");
 
 const constructorMethod = (app) => {
-    app.use("/calculator", calculatorRoutes);
+    app.use("/manipulator", manipulatorRoutes);
 
     app.use("*", (req, res) => {
-        res.redirect("/calculator/static");
+        res.redirect("/manipulator/static");
     })
 };
 

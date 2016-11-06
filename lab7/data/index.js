@@ -1,5 +1,5 @@
-const calculator = require("./calculator");
+const manipulator = require("./manipulator");
 
 module.exports = {
-    calculator: calculator
+    manipulator: manipulator
 };
