@@ -38,7 +38,7 @@
     console.group("Form Creation");
 
     // We can easil setup our new element with just strings
-    var numericalInput = $("<input type='number' required='' max='25' min='-20' value='12' />");
+    var numericalInput = $("<label for='my-input'>Label text here...</label><input id='my-input' type='number' required='' max='25' min='-20' value='12' />");
 
     // Still a string :(
     console.log(numericalInput.val());
