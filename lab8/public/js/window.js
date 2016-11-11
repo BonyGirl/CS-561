@@ -3,51 +3,51 @@
 // I don't have to rely on global variable name changes in the future
 (function ($) {
 
-    var closeButton = $("#close-window").hide();
+    // var closeButton = $("#close-window").hide();
 
-    $("#open-new-window").click(function () {
+    // $("#open-new-window").click(function () {
 
-        // The first parameter is the URL to open
-        // the second is the target. _blank will open in a new tab / window
-        // If not provided, it will just open in the current tab.
-        var newWindow = window.open("http://google.com", "_blank");
+    //     // The first parameter is the URL to open
+    //     // the second is the target. _blank will open in a new tab / window
+    //     // If not provided, it will just open in the current tab.
+    //     var newWindow = window.open("http://google.com", "_blank");
 
-        closeButton.click(function () {
-            // We can only close windows we opened
-            newWindow.close();
-            closeButton.hide();
-        });
+    //     closeButton.click(function () {
+    //         // We can only close windows we opened
+    //         newWindow.close();
+    //         closeButton.hide();
+    //     });
 
-        closeButton.show();
-    });
+    //     closeButton.show();
+    // });
 
-    var timeoutResult = $("#the-timeout .result");
+    // var timeoutResult = $("#the-timeout .result");
 
-    // Timeouts are based on MS; they return an ID so that we can cancel these things
-    var timeoutId = undefined;
+    // // Timeouts are based on MS; they return an ID so that we can cancel these things
+    // var timeoutId = undefined;
 
-    var startButton = $("#start-timeout");
-    var cancelButton = $("#cancel-timeout");
+    // var startButton = $("#start-timeout");
+    // var cancelButton = $("#cancel-timeout");
 
-    startButton.click(function () {
-        startButton.hide();
-        cancelButton.show();
+    // startButton.click(function () {
+    //     startButton.hide();
+    //     cancelButton.show();
 
-        timeoutId = window.setTimeout(function () {
-            timeoutResult.text("Five seconds have passed");
-            cancelButton.hide();
-        }, 5000);
-    });
+    //     timeoutId = window.setTimeout(function () {
+    //         timeoutResult.text("Five seconds have passed");
+    //         cancelButton.hide();
+    //     }, 5000);
+    // });
 
-    cancelButton.click(function () {
-        if (timeoutId === undefined) return;
-        startButton.show();
-        cancelButton.hide();
+    // cancelButton.click(function () {
+    //     if (timeoutId === undefined) return;
+    //     startButton.show();
+    //     cancelButton.hide();
 
-        // let's cancel that timeout
-        window.clearTimeout(timeoutId);
-        timeoutResult.text("We canceled the timeout");
-    });
+    //     // let's cancel that timeout
+    //     window.clearTimeout(timeoutId);
+    //     timeoutResult.text("We canceled the timeout");
+    // });
 
 
     var currentIterations = 0;

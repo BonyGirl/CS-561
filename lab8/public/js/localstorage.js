@@ -2,6 +2,23 @@
 // I am passing the jQuery variable into the IIFE so that
 // I don't have to rely on global variable name changes in the future
 (function ($, localStorage) {
+
+    var currentIterations = 0;
+    var intervalResult = $("#the-interval .result");
+
+
+    var intervalId = window.setInterval(function () {
+        var iteration = ++currentIterations;
+        var message = iteration === 1 ? iteration + " interval has now occurred" : iteration + " intervals have occurred";
+
+        intervalResult.text(message);
+
+        // if (iteration === 5) {
+        //     window.clearInterval(intervalId);
+        // }
+    }, 1500);
+
+
     if (!localStorage["my_first_object"]) {
         localStorage["my_first_object"] = JSON.stringify({message: "Hello, world!"});
     }
@@ -84,6 +101,10 @@
 
     // Now we setup our table
     resetTable();
+
+
+
+
 })(jQuery, window.localStorage);
 // jQuery is exported as $ and jQuery
 // the location API is accessed via the window.location variable

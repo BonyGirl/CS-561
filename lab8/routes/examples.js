@@ -35,5 +35,11 @@ router.get("/localstorage", (req, res) => {
     });
 });
 
+router.get("/test",(req,res) => {
+    res.render("examples/location", {
+       partial: "localstorage-scripts"
+    });
+});
+
 
 module.exports = router;
