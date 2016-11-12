@@ -1,6 +1,4 @@
-// Remember, we're in a browser: prevent global variables from happening
-// I am passing the jQuery variable into the IIFE so that
-// I don't have to rely on global variable name changes in the future
+
 (function ($, localStorage) {
 
     var currentIterations = 0;
@@ -13,19 +11,8 @@
 
         intervalResult.text(message);
 
-        // if (iteration === 5) {
-        //     window.clearInterval(intervalId);
-        // }
     }, 1500);
 
-
-    // if (!localStorage["my_first_object"]) {
-    //     localStorage["my_first_object"] = JSON.stringify({message: "Hello, world!"});
-    // }
-
-    // if (!localStorage["my_first_boolean"]) {
-    //     localStorage["my_first_boolean"] = JSON.stringify(true);
-    // }
 
     var localStorageTableBody = $("#localstorage-data tbody");
     var clearStorage = $("#clear-storage");

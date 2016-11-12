@@ -1,7 +1,7 @@
-const exampleRoutes = require("./examples");
+const localStorageRoutes = require("./localstorage");
 
 const constructorMethod = (app) => {
-    app.use("/examples", exampleRoutes);
+    app.use("/localstorage", localStorageRoutes);
 
     app.use("*", (req, res) => {
         res.sendStatus(404);
