@@ -1,7 +1,7 @@
-const localStorageRoutes = require("./localstorage");
+const formRoutes = require("./from");
 
 const constructorMethod = (app) => {
-    app.use("/localstorage", localStorageRoutes);
+    app.use("/from", formRoutes);
 
     app.use("*", (req, res) => {
         res.sendStatus(404);
