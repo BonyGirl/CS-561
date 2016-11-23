@@ -10,8 +10,8 @@ const path = require('path');
 // page 1:/
 router.get("/", (req, res) => {
     return notes.getALlNotes().then((notes)=>{
-        res.render("misc/debug", {notes:notes});
-        // res.render("layouts/notes",{notes:notes});
+        // res.render("misc/debug", {notes:notes});
+        res.render("layouts/notes",{notes:notes});
     }).catch(() => {
         let route = path.resolve(`static/404.html`);
         res.sendFile(route);
@@ -26,9 +26,10 @@ router.get("/:id", (req, res) => {
             res.sendFile(route);
         }
         else {
-            res.render("misc/debug",{note:note});
+            // res.render("misc/debug",{note:note});
+        res.render("layouts/singleNote",{note:note});
+            
         }
-        // res.render("layouts/singleNote",{note:note});
     }).catch(() => {
         let route = path.resolve(`static/404.html`);
         res.sendFile(route);

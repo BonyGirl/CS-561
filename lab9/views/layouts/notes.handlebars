@@ -1,9 +1,9 @@
 <section class="notes">
   <h1>events</h1>
-  {{#each events}}  
+  {{#each notes}}  
     <article>
-      <h2><a href="/{{id}}">{{title}}</a></h2>
-      <p>{{description}}</p>
+      <h2><a href="../{{_id}}">{{title}}</a></h2>
+      <p>{{summary}}</p>
     </article>
   {{/each}}
 </section>
