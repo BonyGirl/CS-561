@@ -12,25 +12,19 @@ var allNotes = [];
 var currentNote = 0;
 
 router.post("/next", (req, res) => {
-    currentNote++;
+    return notes.getALlNotes().then((notes)=>{
+        // res.render("misc/debug", {notes:notes});
+        allNotes = notes;
+        currentNote++;
     if(currentNote>allNotes.length) {
         currentNote=0;
     }
     res.send(allNotes[currentNote]);
-    // return notes.getNote(req.params.id).then((note)=>{
-    //     if(!note){
-    //         let route = path.resolve(`static/404.html`);
-    //         res.sendFile(route);
-    //     }
-    //     else {
-    //         console.log(request.body);
-    //         response.send("<div>" + xss(request.body.description) + "</div>");
-            
-    //     }
-    // }).catch(() => {
-    //     let route = path.resolve(`static/404.html`);
-    //     res.sendFile(route);
-    // });
+    }).catch(() => {
+        let route = path.resolve(`static/404.html`);
+        res.sendFile(route);
+    });
+    
 });
 
 // page 2:/note
@@ -38,16 +32,12 @@ router.get("/", (req, res) => {
     return notes.getALlNotes().then((notes)=>{
         // res.render("misc/debug", {notes:notes});
         allNotes = notes;
+        currentNote = allNotes.length-2;
         res.render("layouts/singleNote",{note:notes[currentNote]});
     }).catch(() => {
         let route = path.resolve(`static/404.html`);
         res.sendFile(route);
     });
 });
-
-
-
-
-
 
 module.exports = router;

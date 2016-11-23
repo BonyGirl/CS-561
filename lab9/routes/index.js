@@ -13,6 +13,7 @@ const constructorMethod = (app) => {
     // app.use("/events", eventRoutes);
     // app.use("/locations", locationRoutes);
     app.use("/note",noteRoutes);
+    app.use("/new",newNoteRoutes);
     app.use("/", noteListRoutes);
     
     app.use("/404",(req,res) => {

@@ -36,23 +36,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/note", (req, res) => {
-    console.log(res.body);
-    // return notes.getNote(req.params.id).then((note)=>{
-    //     if(!note){
-    //         let route = path.resolve(`static/404.html`);
-    //         res.sendFile(route);
-    //     }
-    //     else {
-    //         console.log(request.body);
-    //         response.send("<div>" + xss(request.body.description) + "</div>");
-            
-    //     }
-    // }).catch(() => {
-    //     let route = path.resolve(`static/404.html`);
-    //     res.sendFile(route);
-    // });
-});
+
 
 
 

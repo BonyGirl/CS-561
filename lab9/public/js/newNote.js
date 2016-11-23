@@ -1,33 +1,32 @@
-(function ($) {
-    // Let's start writing AJAX calls!
 
-    var myNewTaskForm = $("#new-item-form"),
-        newNameInput = $("#new-task-name"),
-        newDecriptionArea = $("#new-task-description");
+(function ($) {
+
+    var title = $("#new-note-title"),
+        dueDate = $("#new-note-due-date"),
+        summary = $("#new-note-summary"),
+        body = $("#new-note-summary"),
+        myNewTaskForm = $("#new-note-form");
+
 
     myNewTaskForm.submit(function (event) {
         event.preventDefault();
+        if (title.val() && dueDate.val() && summary.val() && body.val()) {
 
-        var newName = newNameInput.val();
-        var newDescription = newDecriptionArea.val();
-        var newContent = $("#new-content");
-
-        if (newName && newDescription) {
-            var requestConfig = {
+                var requestConfig = {
                 method: "POST",
-                url: "/api/todo",
+                url: "/new/newNote",
                 contentType: 'application/json',
                 data: JSON.stringify({
-                    name: newName,
-                    description: newDescription,
-                    testField: 12,
-                    testBool: true
+                    title: title.val(),
+                    dueDate: dueDate.val(),
+                    summary: summary.val(),
+                    body: body.val()
                 })
             };
 
             $.ajax(requestConfig).then(function (responseMessage) {
                 console.log(responseMessage);
-                newContent.html(responseMessage.message);
+                window.location="/note/"
                 //                alert("Data Saved: " + msg);
             });
         }

@@ -7,10 +7,10 @@ dbConnection().then(db => {
     return db.dropDatabase().then(() => {
         return dbConnection;
     }).then((db) => {
-        // return notes.createNote("title","summary","body");
-        return notes.getALlNotes();
-    }).then((a) =>{
-        console.log(a);
+        return notes.createNote("title1","summary1","body1");
+        // return notes.getALlNotes();
+    }).then(() =>{
+        return notes.createNote("title2","summary2","body2");
     }).then(() => {
         console.log("Done seeding database");
         db.close();
