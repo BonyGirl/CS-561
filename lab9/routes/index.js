@@ -2,8 +2,9 @@
 // const eventRoutes = require("./events");
 // const locationRoutes = require("./locations");
 
-const noteRoutes = require("./note");
+const noteListRoutes = require("./noteList");
 const newNoteRoutes = require("./newNote");
+const noteRoutes = require("./note");
 
 const path = require('path');
 
@@ -17,7 +18,8 @@ const constructorMethod = (app) => {
         res.sendFile(route);
     });
     
-    app.use("/", noteRoutes);
+    app.use("/", noteListRoutes);
+    app.use("/note",noteRoutes);
     // app.use("/new", newNoteRoutes);
 };
 

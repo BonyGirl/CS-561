@@ -1,6 +1,8 @@
 <article class="note">
-  <h1>{{ note.title }}</h1>
-  <time>Due Date :{{note.date}}</time>
-  <p>{{ note.summary }}</p>
-  <p>{{note.body}}</p>
+  <h1 id="title">{{ note.title }}</h1>
+  <time>Due Date :<label id = "time">{{note.date}}</label></time>
+  <p id = "summary">{{ note.summary }}</p>
+  <p id = "body">{{note.body}}</p>
+  <button id = "next-button" type="button" class="btn btn-primary btn-md">Next</button>
+  {{!--<script src="../../public/js/note.js"></script>--}}
 </article>
