@@ -1,32 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const data = require("../data");
+const xss = require('xss');
 // const event = data.events;
 // const location = data.locations
 // const people = data.people
 const notes = data.notes;
 const path = require('path');
 
-// page 2:/note
-router.get("/:id", (req, res) => {
-    return notes.getNote(req.params.id).then((note)=>{
-        if(!note){
-            let route = path.resolve(`static/404.html`);
-            res.sendFile(route);
-        }
-        else {
-            // res.render("misc/debug",{note:note});
-        res.render("layouts/singleNote",{note:note});
-            
-        }
-    }).catch(() => {
-        let route = path.resolve(`static/404.html`);
-        res.sendFile(route);
-    });
-});
+var allNotes = [];
+var currentNote = 0;
 
-router.post("/note", (req, res) => {
-    console.log(request.body);
+router.post("/next", (req, res) => {
+    currentNote++;
+    if(currentNote>allNotes.length) {
+        currentNote=0;
+    }
+    res.send(allNotes[currentNote]);
     // return notes.getNote(req.params.id).then((note)=>{
     //     if(!note){
     //         let route = path.resolve(`static/404.html`);
@@ -42,6 +32,20 @@ router.post("/note", (req, res) => {
     //     res.sendFile(route);
     // });
 });
+
+// page 2:/note
+router.get("/", (req, res) => {
+    return notes.getALlNotes().then((notes)=>{
+        // res.render("misc/debug", {notes:notes});
+        allNotes = notes;
+        res.render("layouts/singleNote",{note:notes[currentNote]});
+    }).catch(() => {
+        let route = path.resolve(`static/404.html`);
+        res.sendFile(route);
+    });
+});
+
+
 
 
 

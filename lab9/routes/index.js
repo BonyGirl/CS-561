@@ -12,15 +12,13 @@ const constructorMethod = (app) => {
     // app.use("/people", peopleRoutes);
     // app.use("/events", eventRoutes);
     // app.use("/locations", locationRoutes);
+    app.use("/note",noteRoutes);
+    app.use("/", noteListRoutes);
     
     app.use("/404",(req,res) => {
         let route = path.resolve(`static/404.html`);
         res.sendFile(route);
     });
-    
-    app.use("/", noteListRoutes);
-    app.use("/note",noteRoutes);
-    // app.use("/new", newNoteRoutes);
 };
 
 module.exports = constructorMethod;
