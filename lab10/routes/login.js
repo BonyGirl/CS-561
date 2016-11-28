@@ -35,8 +35,23 @@ passport.deserializeUser(function(user, done) {
 });
 
 router.get("/", (req, res) => {
-    res.render("layouts/login");
+    if(req.user){
+        res.render("layouts/private");
+    }
+    else {
+        res.render("layouts/login");
+    }
 });
+
+router.get("/private", (req, res,next) => {
+    if(!req.user){
+        res.redirect("/");
+    }
+    else {
+      res.render("layouts/private",req.user);
+    }
+});
+
 
 router.post('/login',
   passport.authenticate('local', { successRedirect: '/private',
