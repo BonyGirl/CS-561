@@ -12,13 +12,13 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
   },
   function(username, password, done) {
-    user = User.findOne({ username: username });
+    let user = User.findOne(username);
     console.log(user);
     if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
       else {
-          if (user.password != password) {
+          if (!(user.password == password)) {
         return done(null, false, { message: 'Incorrect password.' });
       }
       return done(null, user);
@@ -26,12 +26,19 @@ passport.use(new LocalStrategy({
   }
 ));
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
 router.get("/", (req, res) => {
     res.render("layouts/login");
 });
 
 router.post('/login',
-
   passport.authenticate('local', { successRedirect: '/private',
                                    failureRedirect: '/',
                                    failureFlash: true })

@@ -31,12 +31,12 @@ const userList = [
 let exportedMethods = {
     getAllUsers: () => { return Promise.resolve(userList.slice(0)); },
     findOne: (username) => {
-        if (username === undefined) return Promise.reject("No username provided");
+        if (username === undefined) return null;
 
-        let user = userList.filter(x => x.id === 0).shift();
+        let user = userList.filter(x => x.username == username).shift();
         if (!user) return Promise.reject("No user found")
 
-        return Promise.resolve(user);
+        return user;
     },
     getUserByUsernameAndPassword: (username,password) => {
         if (username === undefined) return Promise.reject("No username provided");
