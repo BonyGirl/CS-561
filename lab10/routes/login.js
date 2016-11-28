@@ -59,9 +59,4 @@ router.post('/login',
                                    failureFlash: true })
 );
 
-// router.post("/login", (req, res) => {
-//     console.log(req.body);
-//     // res.render("layouts/login");
-// });
-
 module.exports = router;

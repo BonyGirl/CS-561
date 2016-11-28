@@ -1,6 +1,5 @@
 const path = require('path');
 const loginRoutes = require('./login');
-const privateRoutes = require("./private");
 
 const constructorMethod = (app) => {
 
