@@ -13,7 +13,6 @@ passport.use(new LocalStrategy({
   },
   function(username, password, done) {
     let user = User.findOne(username);
-    console.log(user);
     if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
@@ -35,8 +34,10 @@ passport.deserializeUser(function(user, done) {
 });
 
 router.get("/", (req, res) => {
+
     if(req.user){
-        res.render("layouts/private");
+        console.log(req.user);
+        res.redirect("private");
     }
     else {
         res.render("layouts/login");
