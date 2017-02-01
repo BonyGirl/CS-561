@@ -1,12 +1,11 @@
-"use strict"
-
 const express = require('express');
 const routerEdu = express.Router();
 const data = require("../data");
 const eduData = data.education;
 
 routerEdu.get("/", (req, res) => {
-    eduData.getAllEdu().then((eduList) => {
+    // eduData.getAllEdu().then((eduList) => {
+    eduData.search().then((eduList) => {
         let partOfeduList = [];
         for(let i = 0; i < eduList.length; i++) {
             partOfeduList.push({school: eduList[i].nameEdu});

@@ -23,6 +23,14 @@ let exportedMethods = {
         });
     },
 
+    search(){
+        return education().then((eduCollection) => {
+            // var query = query.field("school").contains("China");
+            return eduCollection.find({'school':/China/}).toArray();
+
+        });
+    },
+
     addEdu(nameEdu, level, degree) {
         if(!nameEdu || typeof nameEdu != 'string') 
             return Promise.reject("Inappropriate nameEdu input in seed.js!");
