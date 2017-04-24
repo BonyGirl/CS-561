@@ -10,32 +10,33 @@ const LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password'
-  },
-  function(username, password, done) {
-    let user = User.findOne(username);
-    if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      else {
-          if (!(user.password == password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-      }
-  }
+},
+    function (username, password, done) {
+        let user = User.findOne(username).then((user) => {
+            if (!user) {
+                return done(null, false, { message: 'Incorrect username.' });
+            }
+            else {
+                if (!(user.password == password)) {
+                    return done(null, false, { message: 'Incorrect password.' });
+                }
+                return done(null, user);
+            }
+        });
+
+    }
 ));
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
+passport.serializeUser(function (user, done) {
+    done(null, user);
 });
 
-passport.deserializeUser(function(user, done) {
-  done(null, user);
+passport.deserializeUser(function (user, done) {
+    done(null, user);
 });
 
 router.get("/", (req, res) => {
-
-    if(req.user){
+    if (req.user) {
         console.log(req.user);
         res.redirect("private");
     }
@@ -44,20 +45,22 @@ router.get("/", (req, res) => {
     }
 });
 
-router.get("/private", (req, res,next) => {
-    if(!req.user){
+router.get("/private", (req, res, next) => {
+    if (!req.user) {
         res.redirect("/");
     }
     else {
-      res.render("layouts/private",req.user);
+        res.render("layouts/private", req.user);
     }
 });
 
 
 router.post('/login',
-  passport.authenticate('local', { successRedirect: '/private',
-                                   failureRedirect: '/',
-                                   failureFlash: true })
+    passport.authenticate('local', {
+        successRedirect: '/private',
+        failureRedirect: '/',
+        failureFlash: true
+    })
 );
 
 module.exports = router;
